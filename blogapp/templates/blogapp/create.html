@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+  
+  {% block content %}
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        {% include 'snippets/note_create.html' with form=form%}
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock content %}

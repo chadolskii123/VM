@@ -10,37 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
   {% endblock head %}
   {% block content %}
-  <br>
-    <div id="summernote">{{object.content|safe}}</div>
+    <form action="{% url 'blogs:create' %}" method='POST' id="postForm"> {% csrf_token %}
+    {{form.as_p}}
+    </form>
     <br>
-    <button id="edit" class="btn btn-outline-danger" onclick="edit()" type="button">수정</button>
     <button id="save" class="btn btn-outline-warning" onclick="save()" type="button">저장</button>
   {% endblock content %}
 {% block script %}
     <script>
-    let edit = function() {
-      $('#summernote').summernote({
+    $('#summernote').summernote({
         height: 'auto', 
       });
-    }
 
     let save = function() {
       let markup = $('#summernote').summernote('code');
-      $.ajax({
-        url : "{% url 'blogs:save' %}",
-        method : 'post',
-        data : { csrfmiddlewaretoken: '{{ csrf_token }}', 'data':markup, 'pk':'{{ object.pk }}'},
-        success : function(data){
-          alert("저장 되었습니다.")
-        },
-        error : function(errorData){
-          console.log(errorData)
-        }
-      })
       $('#summernote').summernote('destroy');
+      $("#postForm").submit()
     };  
-
-      $('#summernote').summernote('destroy');
-
     </script>
 {% endblock script%}

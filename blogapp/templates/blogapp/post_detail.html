@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+  
+  {% block content %}
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        <h4>{{object.title }}</h4>
+        {% include 'snippets/note.html' with object=object %}
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock content %}
