@@ -22,6 +22,7 @@ from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('', RedirectView.as_view(pattern_name='blogs:home')),
+    path('accounts/', include('accountapp.urls')),
     path('blogs/', include('blogapp.urls')),
     path('admin/', admin.site.urls),
 ] 
